@@ -15,7 +15,7 @@ var socket;
 function Maincontainer() {
   const LightTheme = useSelector((state) => state.themeKey);
   const dyParams = useParams()
-  const [chatId, chatName,username] = dyParams.id.split("&");
+  const [chatId, chatName, username] = dyParams.id.split("&");
   const [chats, setChats] = useState([]);
   const [messageCopy, setmessageCopy] = useState([]);
   const user = localStorage.getItem("myUser");

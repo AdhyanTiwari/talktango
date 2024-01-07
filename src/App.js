@@ -20,11 +20,11 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route exact path='/app' element={<Workarea />} >
-          <Route path='welcome/:id' element={<Welcome />} ></Route>
+          <Route path='welcome' element={<Welcome />} ></Route>
           <Route path='chat/:id' element={<Maincontainer />} ></Route>
-          <Route path='users/:id' element={<Users />} ></Route>
-          <Route path='create-groups/:id' element={<CreateGroup />} ></Route>
-          <Route path='groups/:id' element={<UsersGroups />} ></Route>
+          <Route path='users' element={<Users />} ></Route>
+          <Route path='create-groups' element={<CreateGroup />} ></Route>
+          <Route path='groups' element={<UsersGroups />} ></Route>
 
         </Route>
       </Routes>
