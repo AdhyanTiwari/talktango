@@ -51,7 +51,7 @@ function Users() {
       })
       const json = await response.json();//storing the response of api in variable json
       setLoading(false);
-      navigate("/app/chat/" + json._id + "&" + json.chatName)
+      navigate("/app/chat/" + json._id + "&" + json.chatName + "&" + myUser)
     } catch (error) {
       console.log(error)
       setLoading(false);
