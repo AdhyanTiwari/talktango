@@ -18,7 +18,7 @@ function UsersGroups() {
   const getGroups = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5000/chat/fetchGroup", {
+      const response = await fetch("https://talktangobackend1.onrender.com/chat/fetchGroup", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

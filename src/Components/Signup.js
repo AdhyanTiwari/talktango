@@ -22,7 +22,7 @@ function Signup() {
         try {
             setLoading(true);
             let data = user;
-            const response = await fetch("http://localhost:5000/user/register", {
+            const response = await fetch("https://talktangobackend1.onrender.com/user/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

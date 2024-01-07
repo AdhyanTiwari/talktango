@@ -19,7 +19,7 @@ function Users() {
   const getUsers = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5000/user/get-users", {
+      const response = await fetch("https://talktangobackend1.onrender.com/user/get-users", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +41,7 @@ function Users() {
     const data = { userId: userid };
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5000/chat/accessChat", {
+      const response = await fetch("https://talktangobackend1.onrender.com/chat/accessChat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

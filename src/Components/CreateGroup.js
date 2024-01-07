@@ -26,7 +26,7 @@ function CreateGroup() {
         try {
             setLoading(true);
             let data = groupName;
-            const response = await fetch("http://localhost:5000/chat/createGroup", {
+            const response = await fetch("https://talktangobackend1.onrender.com/chat/createGroup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

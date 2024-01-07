@@ -29,7 +29,7 @@ function Maincontainer() {
     try {
       const data = { chatId: chatId }
       setLoading(true);
-      const response = await fetch("http://localhost:5000/message/allMessage", {
+      const response = await fetch("https://talktangobackend1.onrender.com/message/allMessage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +51,7 @@ function Maincontainer() {
   const sendMessage = async (content) => {
     try {
       let data = { chatId, content };
-      const response = await fetch("http://localhost:5000/message/sendMessage", {
+      const response = await fetch("https://talktangobackend1.onrender.com/message/sendMessage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ function Maincontainer() {
   }
 
   useEffect(() => {
-    socket = io("http://localhost:5000");
+    socket = io("https://talktangobackend1.onrender.com");
     socket.emit("setup", username);
     socket.on("connection", () => {
       setSocketConnectionStatus(true);

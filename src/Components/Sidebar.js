@@ -33,7 +33,7 @@ function Sidebar() {
   const fetchChat = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5000/chat/fetchChat", {
+      const response = await fetch("https://talktangobackend1.onrender.com/chat/fetchChat", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
