@@ -1,0 +1,487 @@
+.dark {
+    background-color: #454545 !important;
+    color: whitesmoke;
+}
+
+.dark input {
+    background-color: #454545;
+    color: whitesmoke;
+}
+
+.dark-mytxt {
+    background-color: rgb(96, 135, 171) !important;
+}
+
+.dark-otxt {
+    background-color: rgb(90, 192, 146) !important;
+}
+
+/* Hiding the scrollbar */
+::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar-container {
+    flex: 0.3;
+    display: flex;
+    flex-direction: column;
+}
+
+.sb-header {
+    background-color: white;
+    margin: 0.5rem;
+    padding: 10px 0px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.sb-search {
+    background-color: white;
+    margin: 0.3rem 0.9rem;
+    padding: 3px 0px;
+    border-radius: 20px;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.sb-conversation {
+    background-color: white;
+    margin: 0.5rem;
+    padding: 3px 3px;
+    border-radius: 20px;
+    flex: 1;
+    overflow-y: scroll;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#sb-search-input {
+    border: none;
+    flex: 0.9;
+    outline: none;
+    font-size: large;
+    border-radius: 20px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    background-color: #d7d7d7;
+    text-align: center;
+}
+
+.profile-pic h1 {
+    margin: 5px 0px;
+    color: white;
+}
+
+.sc-container {
+    height: 40px;
+    padding: 10px;
+    min-width: 90%;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    justify-content: space-between;
+    font-size: small;
+    margin: 5px;
+    background-color: rgb(247, 247, 247);
+    cursor: pointer;
+}
+
+.sc-container:hover {
+    background-color: #d7d7d7;
+}
+
+.sc-info {
+    display: flex;
+}
+
+.sc-container h2 {
+    /* background-color: red; */
+    margin: 0 0;
+}
+
+.sc-container p {
+    /* background-color: red; */
+    margin: 0 0;
+}
+
+.sc-time {
+    margin: 0px 5px;
+    font-size: x-small;
+    color: #888;
+}
+
+.maincontainer-container {
+    flex: 0.7;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.mc-header {
+    background-color: white;
+    margin: 0.5rem;
+    padding: 10px 0px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.mc-content {
+    background-color: white;
+    margin: 0.5rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    flex: 1;
+    overflow-y: scroll;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.mc-inputarea {
+
+    background-color: white;
+    margin: 0.5rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.mc-sc-container {
+    height: 20px;
+    padding: 10px;
+    /* border: 1px solid gray; */
+    min-width: 96%;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    justify-content: space-between;
+    font-size: small;
+}
+
+.mc-sc-container h2 {
+    margin: 0 0;
+}
+
+.mc-sc-container p {
+    margin: 0 0;
+}
+
+#mc-search-input {
+    border: none;
+    flex: 0.9;
+    outline: none;
+    font-size: large;
+
+}
+
+.mytext {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mytext-container {
+    margin: 5px 15px;
+    padding: 5px 10px;
+    background-color: rgb(196, 219, 239);
+    border-radius: 15px;
+    max-width: 45vw;
+}
+
+.mt-text {
+    word-wrap: break-word;
+    font-size: 15px;
+}
+
+.mt-text p {
+    margin: 0;
+}
+
+.mt-time {
+    font-size: 10px;
+    text-align: end;
+}
+
+.othertext {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.othertext-container {
+    margin: 5px 15px;
+    padding: 5px 10px;
+    background-color: rgb(163, 252, 212);
+    border-radius: 15px;
+    max-width: 45vw;
+}
+
+.ot-user {
+    font-size: 14px;
+}
+
+.ot-text {
+    word-wrap: break-word;
+    font-size: 15px;
+}
+
+.ot-text p {
+    margin: 0;
+}
+
+.ot-time {
+    font-size: 10px;
+    text-align: end;
+}
+
+.welcome-container {
+    flex: 0.7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* background-color: rgb(222, 220, 218); */
+}
+
+.welcome-img {
+    max-height: 50%;
+    max-width: 50%;
+}
+
+.welcome-img img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.welcome-text {
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+.welcome-text span {
+    font-size: 15px;
+}
+
+.cg-container {
+    flex: 0.7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.cg-inputarea {
+    padding: 5px;
+    display: flex;
+    width: 95%;
+    background-color: white;
+    border-radius: 15px;
+    justify-content: space-between;
+}
+
+.cg-inputarea input {
+    border: none;
+    flex: 0.9;
+    outline: none;
+    font-size: large;
+}
+
+.login-sidebar {
+    flex: 0.3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-img {
+    max-height: 60%;
+    max-width: 60%;
+}
+
+.login-img img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.login-main {
+    flex: 0.7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    background-color: white;
+    margin: 2rem;
+    overflow-y: scroll;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.login-main #login-text {
+    padding: 1.5rem;
+    font-size: 27px;
+    color: rgb(81, 167, 138);
+    font-weight: 700;
+}
+
+.login-input {
+    min-width: 30%;
+    margin: 5px;
+    outline-color: purple;
+
+}
+
+.login-input input {
+    padding: 1rem;
+    border: none;
+    outline-color: purple;
+    min-width: 90%;
+    font-size: 18px;
+    border-radius: 20px;
+    border: 1px solid #d7d7d7;
+}
+
+.login-main button {
+    padding: 0.5rem 2rem;
+    font-size: 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid purple;
+    color: purple;
+    cursor: pointer;
+}
+
+.login-link {
+    margin-top: 1.5rem;
+    color: rgb(81, 167, 138);
+    font-weight: 500;
+}
+
+.usg-container {
+    flex: 0.7;
+    display: flex;
+    flex-direction: column;
+}
+
+.usg-img {
+    max-height: 1.8rem;
+    max-width: 1.8rem;
+    padding: 5px 1rem;
+}
+
+.usg-img img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.usg-header {
+    background-color: white;
+    margin: 0.5rem;
+    padding: 10px 0px;
+    border-radius: 20px;
+    display: flex;
+    /* justify-content: space-between; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.usg-conversation {
+    margin: 3px 0.5rem;
+    padding: 3px 3px;
+    border-radius: 20px;
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.usg-profile-container {
+    height: 40px;
+    padding: 10px;
+    min-width: 90%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    border-radius: 15px;
+    /* justify-content: space-between; */
+    font-size: small;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 10px;
+}
+
+.usg-profile-container:hover {
+    background-color: #e4e4e4;
+}
+
+.usg-profile-container h2 {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.bs-search {
+    background-color: white;
+    margin: 0.3rem 0.9rem;
+    padding: 3px 0px;
+    border-radius: 20px;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#bs-search-input {
+    border: none;
+    flex: 0.9;
+    outline: none;
+    font-size: large;
+    border-radius: 20px;
+}
+
+
+@media only screen and (max-width: 40em) {
+    .sb-search {
+        display: none;
+    }
+
+    .sb-conversation {
+        display: none;
+    }
+
+    .sb-header {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        width: min-content;
+        justify-content: center;
+    }
+
+    .sb-header-rest {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        flex: 1;
+    }
+
+    .sidebar-container {
+        flex-grow: 0;
+    }
+
+    .maincontainer-container,
+    .usg-container {
+        flex-grow: 1;
+    }
+
+}
