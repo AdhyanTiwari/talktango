@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./mystyle.css"
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import SendIcon from '@mui/icons-material/Send';
 import { IconButton } from '@mui/material';
 import Mytext from './Mytext';
 import Othertext from './Othertext';
@@ -9,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import { io } from "socket.io-client";
+import SendMessageInput from './SendMessageInput';
 
 var socket;
 
@@ -17,18 +17,16 @@ function Maincontainer() {
   const dyParams = useParams()
   const [chatId, chatName, username] = dyParams.id.split("&");
   const [chats, setChats] = useState([]);
-  const [messageCopy, setmessageCopy] = useState([]);
+  // const [messageCopy, setmessageCopy] = useState([]);
   const user = localStorage.getItem("myUser");
-  const [data, setData] = useState({ content: "" });
-  const [loading, setLoading] = useState(false);
+  // const [data, setData] = useState({ content: "" });
+  // const [loading, setLoading] = useState(false);
   const [socketConnectionStatus, setSocketConnectionStatus] = useState(false);
-  const onChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value })
-  }
+
   const getMessage = async () => {
     try {
       const data = { chatId: chatId }
-      setLoading(true);
+      // setLoading(true);
       const response = await fetch("https://talktangobackend1.onrender.com/message/allMessage", {
         method: "POST",
         headers: {
@@ -38,41 +36,17 @@ function Maincontainer() {
         body: JSON.stringify(data)
       })
       const json = await response.json();//storing the response of api in variable json
-      setLoading(false);
+      // setLoading(false);
       setChats(json.allMessage)//storing the saved news in news variable 
-      setmessageCopy(json.allMessage);
+      // setmessageCopy(json.allMessage);
       socket.emit("join chat", chatId);
     } catch (error) {
       console.log(error)
-      setLoading(false);
+      // setLoading(false);
     }
   }
 
-  const sendMessage = async (content) => {
-    try {
-      let data = { chatId, content };
-      const response = await fetch("https://talktangobackend1.onrender.com/message/sendMessage", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token")
-        },
-        body: JSON.stringify(data)
-      })
-      const json = await response.json();
-      socket.emit("new message", json);
 
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const sendmessage = (e) => {
-    e.preventDefault();
-    setData({ content: "" })
-    sendMessage(data.content);
-    getMessage()
-  }
 
   useEffect(() => {
     socket = io("https://talktangobackend1.onrender.com");
@@ -86,7 +60,7 @@ function Maincontainer() {
     socket.on("message recieved", (data) => {
       getMessage();
     })
-  })
+  }, [])
 
 
   useEffect(() => {
@@ -120,13 +94,7 @@ function Maincontainer() {
             return (e.sender._id === user ? <Mytext content={e.content} time={e.time} /> : <Othertext content={e.content} name={e.sender.name} time={e.time} />)
           })}
         </div>
-        <form className={"mc-inputarea" + ((LightTheme) ? "" : " dark")} onSubmit={sendmessage}>
-          <input type="text" placeholder='Type message here' id='mc-search-input' name='content' value={data.content} onChange={onChange} />
-          <IconButton type='submit'>
-            <SendIcon className={(LightTheme) ? "" : " dark"} />
-          </IconButton>
-
-        </form>
+        <SendMessageInput chatId={chatId} />
       </motion.div>
     </AnimatePresence>
   )

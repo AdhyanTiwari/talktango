@@ -102,7 +102,7 @@ function Sidebar() {
           conversation.map((convo) => {
             return (
               <motion.div
-                whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.99 }} className={'sc-container' + ((LightTheme) ? "" : " dark")} onClick={() => { navigate("chat/" + convo._id + "&" + convo.chatName+"&"+myUser) }}>
+                whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.99 }} className={'sc-container' + ((LightTheme) ? "" : " dark")} onClick={() => { navigate("chat/" + convo._id + "&" + convo.chatName + "&" + myUser) }}>
                 <SidebarChat props={convo} myUser={myUser} key={convo._id} />
               </motion.div>)
 
