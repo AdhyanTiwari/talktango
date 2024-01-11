@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./mystyle.css"
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { IconButton } from '@mui/material';
@@ -9,6 +9,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import { io } from "socket.io-client";
 import SendMessageInput from './SendMessageInput';
+import axios from "axios";
+import { myContext } from './Workarea';
+
 
 var socket;
 
@@ -19,34 +22,10 @@ function Maincontainer() {
   const [chats, setChats] = useState([]);
   // const [messageCopy, setmessageCopy] = useState([]);
   const user = localStorage.getItem("myUser");
-  // const [data, setData] = useState({ content: "" });
-  // const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("token");
+  const { refresh, setRefresh } = useContext(myContext);
   const [socketConnectionStatus, setSocketConnectionStatus] = useState(false);
-
-  const getMessage = async () => {
-    try {
-      const data = { chatId: chatId }
-      // setLoading(true);
-      const response = await fetch("https://talktangobackend1.onrender.com/message/allMessage", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),//getting news from local storage
-        },
-        body: JSON.stringify(data)
-      })
-      const json = await response.json();//storing the response of api in variable json
-      // setLoading(false);
-      setChats(json.allMessage)//storing the saved news in news variable 
-      // setmessageCopy(json.allMessage);
-      socket.emit("join chat", chatId);
-    } catch (error) {
-      console.log(error)
-      // setLoading(false);
-    }
-  }
-
-
+  console.log("chats", chats)
 
   useEffect(() => {
     socket = io("https://talktangobackend1.onrender.com");
@@ -58,14 +37,40 @@ function Maincontainer() {
 
   useEffect(() => {
     socket.on("message recieved", (data) => {
-      getMessage();
+      
     })
   }, [])
 
 
+  // useEffect(() => {
+  //   getMessage();
+  // }, [dyParams])
+
+
   useEffect(() => {
-    getMessage();
-  }, [dyParams])
+    const data = { chatId: chatId }
+    // setLoading(true);
+    fetch("https://talktangobackend1.onrender.com/message/allMessage", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token,//getting news from local storage
+      },
+      body: JSON.stringify(data)
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+      .then(data => {
+        setChats(data.allMessage)
+        socket.emit("join chat", chatId);
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+  }, [dyParams, token, refresh]);
 
   return (
     <AnimatePresence>
@@ -94,7 +99,7 @@ function Maincontainer() {
             return (e.sender._id === user ? <Mytext content={e.content} time={e.time} /> : <Othertext content={e.content} name={e.sender.name} time={e.time} />)
           })}
         </div>
-        <SendMessageInput chatId={chatId} />
+        <SendMessageInput chatId={chatId} socket={socket}/>
       </motion.div>
     </AnimatePresence>
   )

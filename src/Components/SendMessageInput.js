@@ -1,46 +1,46 @@
 import { IconButton } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import SendIcon from '@mui/icons-material/Send';
-import { io } from 'socket.io-client';
 import { useSelector } from 'react-redux';
+import { myContext } from './Workarea';
 
 
 var socket;
 
-function SendMessageInput({chatId}) {
-    const token=localStorage.getItem("token")
-  const LightTheme = useSelector((state) => state.themeKey);
+function SendMessageInput({ chatId, socket }) {
+    const { refresh, setRefresh } = useContext(myContext);
+    const token = localStorage.getItem("token")
+    const LightTheme = useSelector((state) => state.themeKey);
     const [data, setData] = useState({ content: "" });
-    useEffect(() => {
-        socket = io("https://talktangobackend1.onrender.com");
-    })
+
     const onChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
 
-    const sendMessage = async (content) => {
-        try {
-            let data = { chatId, content };
-            const response = await fetch("https://talktangobackend1.onrender.com/message/sendMessage", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "auth-token": token
-                },
-                body: JSON.stringify(data)
-            })
-            const json = await response.json();
-            socket.emit("new message", json);
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     const sendmessage = (e) => {
         e.preventDefault();
-        sendMessage(data.content);
-        setData({ content: "" })
+        fetch("https://talktangobackend1.onrender.com/message/sendMessage", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": token
+            },
+            body: JSON.stringify({ chatId, content:data.content })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        }).then(data => {
+            console.log("new message", data)
+            socket.emit("new message", data);
+            setRefresh(!refresh)
+            setData({ content: "" })
+
+        }).catch(error => {
+            console.error('Fetch error:', error);
+        });
+
         // getMessage()
     }
 

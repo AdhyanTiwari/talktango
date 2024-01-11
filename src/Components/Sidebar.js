@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./mystyle.css"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
@@ -14,10 +14,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { toggleTheme } from "../Features/themeSlice";
 import { motion } from "framer-motion"
 import LogoutIcon from '@mui/icons-material/Logout';
+import { myContext } from "./Workarea";
 
 
 function Sidebar() {
-
+  const token = localStorage.getItem("token");
+  const { refresh, setRefresh } = useContext(myContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const LightTheme = useSelector((state) => state.themeKey);
@@ -29,31 +31,35 @@ function Sidebar() {
   const [conversation, setConversation] = useState([]);
   const [loading, setLoading] = useState(false);
   const [myUser, setMyUser] = useState("");
+  console.log("conversation", conversation)
 
-  const fetchChat = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch("https://talktangobackend1.onrender.com/chat/fetchChat", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token")//getting news from local storage
-        }
-      })
-      const json = await response.json();//storing the response of api in variable json
-      setLoading(false);
-      setConversation(json.myChat)//storing the saved news in news variable 
-      setMyUser(json.myUser);
-    } catch (error) {
-      console.log(error)
-      setLoading(false);
-      navigate("/signup") //using this we can navigate to an url from a react function
-    }
-  }
+  
 
   useEffect(() => {
-    fetchChat();
-  }, [])
+    // setLoading(true);
+    fetch("https://talktangobackend1.onrender.com/chat/fetchChat", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token//getting news from local storage
+      }
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+      .then(data => {
+        setLoading(false);
+        setConversation(data.myChat)//storing the saved news in news variable 
+        setMyUser(data.myUser);
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+        setLoading(false);
+        navigate("/signup")
+      });
+  }, [refresh]);
 
 
   return (
